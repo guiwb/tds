@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,10 +20,6 @@ public class Workout {
     @JsonFormat(pattern = "DD/MM/YYYY HH:mm")
     private LocalDateTime scheduled_at;
 
-    private Integer total_meters;
-
-    private Integer total_time_in_seconds;
-
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinTable(
             name = "workout_teams",
@@ -30,4 +27,7 @@ public class Workout {
             inverseJoinColumns = @JoinColumn(name = "team_id")
     )
     private Set<Team> teams = new HashSet<>();
+
+    @OneToMany(mappedBy = "workout", fetch = FetchType.EAGER)
+    private Collection<Session> sessions;
 }
