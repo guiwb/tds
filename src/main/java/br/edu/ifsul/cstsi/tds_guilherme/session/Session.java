@@ -1,5 +1,7 @@
-package br.edu.ifsul.cstsi.tds_guilherme.model;
+package br.edu.ifsul.cstsi.tds_guilherme.session;
 
+import br.edu.ifsul.cstsi.tds_guilherme.workout.Workout;
+import br.edu.ifsul.cstsi.tds_guilherme.serie.Serie;
 import jakarta.persistence.*;
 
 import java.util.Collection;

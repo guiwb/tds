@@ -1,5 +1,7 @@
-package br.edu.ifsul.cstsi.tds_guilherme.model;
+package br.edu.ifsul.cstsi.tds_guilherme.workout;
 
+import br.edu.ifsul.cstsi.tds_guilherme.session.Session;
+import br.edu.ifsul.cstsi.tds_guilherme.team.Team;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;

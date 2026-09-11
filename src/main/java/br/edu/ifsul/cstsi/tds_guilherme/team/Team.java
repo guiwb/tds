@@ -1,5 +1,7 @@
-package br.edu.ifsul.cstsi.tds_guilherme.model;
+package br.edu.ifsul.cstsi.tds_guilherme.team;
 
+import br.edu.ifsul.cstsi.tds_guilherme.user.User;
+import br.edu.ifsul.cstsi.tds_guilherme.workout.Workout;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
