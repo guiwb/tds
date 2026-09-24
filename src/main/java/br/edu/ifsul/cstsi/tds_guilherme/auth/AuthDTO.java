@@ -1,4 +1,3 @@
 package br.edu.ifsul.cstsi.tds_guilherme.auth;
 
-public class AuthDTO {
-}
+public record AuthDTO(String email, String password) {}

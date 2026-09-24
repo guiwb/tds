@@ -30,11 +30,7 @@ public class UserController {
     public ResponseEntity<UserDto> findById(@PathVariable(value = "id") Long id) {
         var user = userRepository.findById(id);
 
-        if (user.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(new UserDto(user.get()));
+        return user.map(value -> ResponseEntity.ok(new UserDto(value))).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
