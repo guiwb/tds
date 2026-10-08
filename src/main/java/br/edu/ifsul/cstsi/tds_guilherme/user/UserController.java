@@ -1,5 +1,6 @@
 package br.edu.ifsul.cstsi.tds_guilherme.user;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -35,7 +36,7 @@ public class UserController {
 
     @PostMapping
     @Secured({"ROLE_ADMIN"})
-    public ResponseEntity<UserDto> create(@RequestBody CreateUserDto data) {
+    public ResponseEntity<UserDto> create(@Valid @RequestBody CreateUserDto data) {
         var user = new User();
         user.setName(data.name());
         user.setEmail(data.email());
@@ -49,7 +50,7 @@ public class UserController {
 
     @PutMapping
     @Secured({"ROLE_ADMIN"})
-    public ResponseEntity<UserDto> update(@RequestBody UpdateUserDto data) {
+    public ResponseEntity<UserDto> update(@Valid @RequestBody UpdateUserDto data) {
         var existentUser = userRepository.findById(data.id());
 
         if (existentUser.isEmpty()) {

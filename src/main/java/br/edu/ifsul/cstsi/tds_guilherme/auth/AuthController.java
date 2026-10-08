@@ -3,6 +3,7 @@ package br.edu.ifsul.cstsi.tds_guilherme.auth;
 import br.edu.ifsul.cstsi.tds_guilherme.infra.jwt.TokenJwtDto;
 import br.edu.ifsul.cstsi.tds_guilherme.infra.jwt.TokenService;
 import br.edu.ifsul.cstsi.tds_guilherme.user.User;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,7 +25,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<TokenJwtDto> login(@RequestBody AuthDto data) {
+    public ResponseEntity<TokenJwtDto> login(@Valid @RequestBody AuthDto data) {
         var authDto = new UsernamePasswordAuthenticationToken(data.email(), data.password());
 
         var authentication = authenticationManager.authenticate(authDto);
