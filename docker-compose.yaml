@@ -1,0 +1,33 @@
+services:
+  app:
+    build: .
+    container_name: tds-app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/tds
+      SPRING_DATASOURCE_USERNAME: tds
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:-tds}
+      JWT_SECRET: ${JWT_SECRET:-12345678123456781234567812345678}
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
+  mariadb:
+    image: mariadb:12.3.3
+    container_name: tds-mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-password}
+      MARIADB_DATABASE: tds
+      MARIADB_USER: tds
+      MARIADB_PASSWORD: ${DB_PASSWORD:-tds}
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+volumes:
+  mariadb_data:
