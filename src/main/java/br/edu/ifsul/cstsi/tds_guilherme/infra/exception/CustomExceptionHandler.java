@@ -39,7 +39,7 @@ public class CustomExceptionHandler {
             String errorMessage = error.getDefaultMessage();
             errors.put(fieldName, errorMessage);
         });
-        return build(HttpStatus.FORBIDDEN, "Erro de validação", errors, request);
+        return build(HttpStatus.BAD_REQUEST, "Erro de validação", errors, request);
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
