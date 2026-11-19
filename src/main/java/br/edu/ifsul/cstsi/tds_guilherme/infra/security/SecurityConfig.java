@@ -45,7 +45,9 @@ public class SecurityConfig {
                 authorize.requestMatchers(
                     path.matcher("/v3/api-docs/**"),
                     path.matcher("/swagger-ui.html"),
-                    path.matcher("/swagger-ui/**")
+                    path.matcher("/swagger-ui/**"),
+                    path.matcher("/mcp"),
+                    path.matcher("/mcp/**")
                 ).permitAll();
                 authorize.requestMatchers(path.matcher(HttpMethod.POST, "/api/v1/auth/login")).permitAll();
                 authorize.anyRequest().authenticated();
